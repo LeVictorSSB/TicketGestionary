@@ -7,7 +7,7 @@ export class Router {
     this.routes = {
       '/': TableView,
       '/table': TableView,
-      '404': Error404
+      404: Error404
     };
 
     // Pour gérer la navigation via l'historique du navigateur

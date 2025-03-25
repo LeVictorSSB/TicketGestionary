@@ -58,9 +58,9 @@ export class TableController {
   // Retourne le statut formaté pour l'affichage
   getStatusLabel(ticket) {
     const statusMap = {
-      'created': 'Créé',
-      'assigned': 'Assigné',
-      'used': 'Utilisé'
+      created: 'Créé',
+      assigned: 'Assigné',
+      used: 'Utilisé'
     };
     return statusMap[ticket.statut] || ticket.statut;
   }
