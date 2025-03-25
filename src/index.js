@@ -1,5 +1,5 @@
-import { Router } from './router.js';
-import { NavBar } from './Views/navBar.js';
+import { Router } from './router';
+import { NavBar } from './Views/navBar';
 
 // Point d'entrée de l'application
 document.addEventListener('DOMContentLoaded', () => {

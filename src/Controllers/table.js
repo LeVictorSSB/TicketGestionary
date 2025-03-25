@@ -1,4 +1,4 @@
-import { TicketModel } from '../Models/tickets.js';
+import { TicketModel } from '../Models/tickets';
 
 export class TableController {
   constructor(updateView) {

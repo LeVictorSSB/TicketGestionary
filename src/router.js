@@ -1,5 +1,5 @@
-import { TableView } from './Views/table.js';
-import { Error404 } from './Controllers/error-404.js';
+import { TableView } from './Views/table';
+import { Error404 } from './Controllers/error-404';
 
 export class Router {
   constructor(container) {

@@ -33,7 +33,7 @@ export class TicketModel {
 
   // Assignation d'un ticket à un particulier
   assignTicket(id, particulier) {
-    const ticket = this.tickets.find(t => t.id === id);
+    const ticket = this.tickets.find((t) => (t.id === id));
     if (ticket) {
       ticket.particulier = particulier;
       ticket.statut = 'assigned';
@@ -45,7 +45,7 @@ export class TicketModel {
 
   // Validation de l'utilisation d'un ticket
   useTicket(id) {
-    const ticket = this.tickets.find(t => t.id === id);
+    const ticket = this.tickets.find((t) => (t.id === id));
     if (ticket) {
       ticket.dateUtilisation = new Date().toISOString();
       ticket.statut = 'used';
@@ -62,14 +62,13 @@ export class TicketModel {
 
   // Recherche de tickets par ID
   searchById(id) {
-    return this.tickets.filter(ticket =>
-      ticket.id.toLowerCase().includes(id.toLowerCase()));
+    return this.tickets.filter((ticket) => (ticket.id.toLowerCase().includes(id.toLowerCase())));
   }
 
   // Recherche de tickets par nom (distributeur ou particulier)
   searchByName(name) {
-    return this.tickets.filter(ticket =>
-      (ticket.distributeur && ticket.distributeur.toLowerCase().includes(name.toLowerCase()))
-      || (ticket.particulier && ticket.particulier.toLowerCase().includes(name.toLowerCase())));
+    return this.tickets.filter((ticket) => (
+      ticket.distributeur && ticket.distributeur.toLowerCase().includes(name.toLowerCase()))
+    || (ticket.particulier && ticket.particulier.toLowerCase().includes(name.toLowerCase())));
   }
 }

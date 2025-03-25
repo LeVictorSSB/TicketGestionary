@@ -1,4 +1,4 @@
-import { TableController } from '../Controllers/table.js';
+import { TableController } from '../Controllers/table';
 
 export function TableView() {
   const view = document.createElement('div');
@@ -143,7 +143,7 @@ export function TableView() {
       return;
     }
 
-    ticketsToDisplay.forEach(ticket => {
+    ticketsToDisplay.forEach((ticket) => {
       const row = document.createElement('tr');
       row.innerHTML = `
         <td>${ticket.id}</td>
@@ -182,7 +182,7 @@ export function TableView() {
   // Fonction pour ajouter les écouteurs d'événements aux boutons d'action
   function addActionListeners() {
     // Boutons pour assigner un ticket
-    view.querySelectorAll('.btn-assign').forEach(button => {
+    view.querySelectorAll('.btn-assign').forEach((button) => {
       button.addEventListener('click', () => {
         const ticketId = button.getAttribute('data-id');
         view.querySelector('#assign-ticket-id').value = ticketId;
@@ -192,7 +192,7 @@ export function TableView() {
     });
 
     // Boutons pour valider l'utilisation d'un ticket
-    view.querySelectorAll('.btn-use').forEach(button => {
+    view.querySelectorAll('.btn-use').forEach((button) => {
       button.addEventListener('click', () => {
         const ticketId = button.getAttribute('data-id');
         view.querySelector('#use-ticket-id').value = ticketId;
@@ -205,7 +205,7 @@ export function TableView() {
   // Une fois la vue ajoutée au DOM
   setTimeout(() => {
     // Initialisation des modals Bootstrap
-    Array.from(view.querySelectorAll('.modal')).forEach(modalEl => {
+    Array.from(view.querySelectorAll('.modal')).forEach((modalEl) => {
       new bootstrap.Modal(modalEl);
     });
 
