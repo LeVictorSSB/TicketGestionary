@@ -1,12 +1,16 @@
-import { TableView } from './Views/table';
+import { TableView } from './Views/admin';
+import { ValidationView } from './Views/validation';
+import { AssignementView } from './Views/assignement';
 import { Error404 } from './Controllers/error-404';
 
 export class Router {
   constructor(container) {
     this.container = container;
     this.routes = {
-      '/': TableView,
-      '/table': TableView,
+      '/': Error404,
+      '/admin': TableView,
+      '/assignement': AssignementView,
+      '/validation': ValidationView,
       404: Error404
     };
 
