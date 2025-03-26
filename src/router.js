@@ -1,3 +1,4 @@
+import { LoginView } from './Views/login';
 import { TableView } from './Views/admin';
 import { ValidationView } from './Views/validation';
 import { AssignementView } from './Views/assignement';
@@ -8,6 +9,7 @@ export class Router {
     this.container = container;
     this.routes = {
       '/': Error404,
+      '/login': LoginView,
       '/admin': TableView,
       '/assignement': AssignementView,
       '/validation': ValidationView,
