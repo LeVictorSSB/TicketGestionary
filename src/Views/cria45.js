@@ -1,6 +1,6 @@
 import { TableController } from '../Controllers/table';
 
-export function TableView() {
+export function Cria45View() {
   const view = document.createElement('div');
   view.className = 'table-view';
 

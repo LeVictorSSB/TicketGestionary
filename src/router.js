@@ -1,18 +1,17 @@
-import { LoginView } from './Views/login';
-import { TableView } from './Views/admin';
-import { ValidationView } from './Views/validation';
-import { AssignementView } from './Views/assignement';
+import { Cria45View } from './Views/cria45';
+import { RecepteurView } from './Views/recepteur';
+import { DistributeurView } from './Views/distributeur';
 import { Error404 } from './Controllers/error-404';
+import { Acceuil } from './Controllers/acceuil'; // Import the Acceuil controller
 
 export class Router {
   constructor(container) {
     this.container = container;
     this.routes = {
-      '/': Error404,
-      '/login': LoginView,
-      '/admin': TableView,
-      '/assignement': AssignementView,
-      '/validation': ValidationView,
+      '/': Acceuil, // Set Acceuil as the view for the '/' route
+      '/cria45': Cria45View,
+      '/distributeur': DistributeurView,
+      '/recepteur': RecepteurView,
       404: Error404
     };
 

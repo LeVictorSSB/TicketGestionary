@@ -1,6 +1,6 @@
 import { TableController } from '../Controllers/table';
 
-export function AssignementView() {
+export function RecepteurView() {
   const view = document.createElement('div');
   view.className = 'table-view';
 
@@ -44,29 +44,24 @@ export function AssignementView() {
     </table>
   `;
 
-  // Modal pour assigner un ticket
+  // Modal pour valider un ticket
   const modalsContainer = document.createElement('div');
   modalsContainer.innerHTML = `
-    <!-- Modal pour assigner un ticket -->
-    <div class="modal fade" id="assignTicketModal" tabindex="-1">
+    <!-- Modal pour utiliser un ticket -->
+    <div class="modal fade" id="useTicketModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Assigner le ticket à un particulier</h5>
+            <h5 class="modal-title">Valider l'utilisation du ticket</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
-            <form id="assign-ticket-form" class="modal-form">
-              <div class="form-group">
-                <label for="particulier">Nom du particulier</label>
-                <input type="text" class="form-control" id="particulier" required>
-                <input type="hidden" id="assign-ticket-id">
-              </div>
-            </form>
+            <p>Êtes-vous sûr de vouloir marquer ce ticket comme utilisé ?</p>
+            <input type="hidden" id="use-ticket-id">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" id="submit-assign-ticket">Assigner</button>
+            <button type="button" class="btn btn-success" id="submit-use-ticket">Valider l'utilisation</button>
           </div>
         </div>
       </div>
@@ -108,9 +103,9 @@ export function AssignementView() {
           </span>
         </td>
         <td>
-          ${ticket.statut === 'created' ? `
-            <button class="btn btn-sm btn-warning btn-assign" data-id="${ticket.id}">
-              Assigner
+          ${ticket.statut === 'assigned' ? `
+            <button class="btn btn-sm btn-success btn-use" data-id="${ticket.id}">
+              Valider utilisation
             </button>
           ` : ''}
         </td>
@@ -127,13 +122,13 @@ export function AssignementView() {
 
   // Fonction pour ajouter les écouteurs d'événements aux boutons d'action
   function addActionListeners() {
-    // Boutons pour assigner un ticket
-    view.querySelectorAll('.btn-assign').forEach((button) => {
+    // Boutons pour valider l'utilisation d'un ticket
+    view.querySelectorAll('.btn-use').forEach((button) => {
       button.addEventListener('click', () => {
         const ticketId = button.getAttribute('data-id');
-        view.querySelector('#assign-ticket-id').value = ticketId;
-        const assignModal = new bootstrap.Modal(view.querySelector('#assignTicketModal'));
-        assignModal.show();
+        view.querySelector('#use-ticket-id').value = ticketId;
+        const useModal = new bootstrap.Modal(view.querySelector('#useTicketModal'));
+        useModal.show();
       });
     });
   }
@@ -145,14 +140,12 @@ export function AssignementView() {
       new bootstrap.Modal(modalEl);
     });
 
-    // Écouteur pour la soumission du formulaire d'assignation
-    view.querySelector('#submit-assign-ticket').addEventListener('click', () => {
-      const particulier = view.querySelector('#particulier').value.trim();
-      const ticketId = view.querySelector('#assign-ticket-id').value;
-      if (particulier && ticketId) {
-        controller.assignTicket(ticketId, particulier);
-        bootstrap.Modal.getInstance(view.querySelector('#assignTicketModal')).hide();
-        view.querySelector('#assign-ticket-form').reset();
+    // Écouteur pour la validation d'utilisation
+    view.querySelector('#submit-use-ticket').addEventListener('click', () => {
+      const ticketId = view.querySelector('#use-ticket-id').value;
+      if (ticketId) {
+        controller.useTicket(ticketId);
+        bootstrap.Modal.getInstance(view.querySelector('#useTicketModal')).hide();
       }
     });
 
