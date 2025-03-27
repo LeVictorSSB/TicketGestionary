@@ -6,7 +6,7 @@ export function NavBar() {
 
   let title = "<h2>Pass d'Autonomie Numérique</h2>";
   if (path.includes('/cria45')) {
-    title += 'Espace C2B#CRIA45';
+    title += '<span style="color:rgb(181, 180, 180);">Espace C2B#CRIA45</span>';
   } else if (path.includes('/distributeur')) {
     title += '<span style="color:rgb(181, 180, 180);">Espace Distributeur :</span> Emmaüs Connect';
   } else if (path.includes('/recepteur')) {
