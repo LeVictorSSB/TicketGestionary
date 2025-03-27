@@ -5,8 +5,11 @@ import { NavBar } from './Views/navBar';
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('app');
 
-  // Ajout de la barre de navigation
-  app.appendChild(NavBar());
+  // Ajout de la barre de navigation avec une taille fixe
+  const navBarElement = NavBar();
+  navBarElement.style.height = '100px'; // Fixe la hauteur de la barre de navigation
+  navBarElement.style.overflow = 'hidden'; // Empêche le débordement du contenu
+  app.appendChild(navBarElement);
 
   // Ajout du conteneur pour le contenu principal
   const mainContainer = document.createElement('div');
