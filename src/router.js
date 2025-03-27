@@ -1,4 +1,5 @@
 import { Cria45View } from './Views/cria45';
+import { LoginView } from './Views/login';
 import { RecepteurView } from './Views/recepteur';
 import { DistributeurView } from './Views/distributeur';
 import { Error404 } from './Controllers/error-404';
@@ -9,6 +10,7 @@ export class Router {
     this.container = container;
     this.routes = {
       '/': Acceuil, // Set Acceuil as the view for the '/' route
+      '/login': LoginView,
       '/cria45': Cria45View,
       '/distributeur': DistributeurView,
       '/recepteur': RecepteurView,

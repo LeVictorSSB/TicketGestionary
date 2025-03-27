@@ -1,7 +1,7 @@
 export function NavBar() {
   const navbar = document.createElement('nav');
   navbar.className = 'navbar navbar-expand-lg navbar-dark bg-primary';
-  
+
   navbar.innerHTML = `
     <div class="container">
       <a class="navbar-brand" href="/">Pass d'autonomie numérique</a>
@@ -18,6 +18,6 @@ export function NavBar() {
       </div>
     </div>
   `;
-  
+
   return navbar;
 }

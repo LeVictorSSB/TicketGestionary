@@ -74,11 +74,11 @@ export function LoginView() {
 
       try {
         const result = await controller.login(username, password, rememberMe);
-        
+
         if (result.success) {
           // Masquer le message d'erreur s'il était visible
           errorMessage.classList.add('d-none');
-          
+
           // Redirection ou mise à jour de l'interface
           controller.navigateToDashboard();
         } else {
@@ -86,7 +86,6 @@ export function LoginView() {
           errorMessage.classList.remove('d-none');
         }
       } catch (error) {
-        console.error('Erreur de connexion:', error);
         errorMessage.classList.remove('d-none');
       }
     });

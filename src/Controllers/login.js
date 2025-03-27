@@ -15,9 +15,9 @@ export class LoginController {
     try {
       // Validation de base côté client
       if (!username || !password) {
-        return { 
-          success: false, 
-          error: 'Veuillez saisir un nom d\'utilisateur et un mot de passe' 
+        return {
+          success: false,
+          error: 'Veuillez saisir un nom d\'utilisateur et un mot de passe'
         };
       }
 
@@ -27,30 +27,29 @@ export class LoginController {
       if (response.success) {
         // Gérer la connexion réussie
         this.handleSuccessfulLogin(response.user, rememberMe);
-        return { 
-          success: true, 
-          user: response.user 
+        return {
+          success: true,
+          user: response.user
         };
       } else {
         // Gérer l'échec de connexion
-        return { 
-          success: false, 
-          error: response.error || 'Identifiants incorrects' 
+        return {
+          success: false,
+          error: response.error || 'Identifiants incorrects'
         };
       }
     } catch (error) {
-      console.error('Erreur de connexion:', error);
-      return { 
-        success: false, 
-        error: 'Une erreur est survenue lors de la connexion' 
+      return {
+        success: false,
+        error: 'Une erreur est survenue lors de la connexion'
       };
     }
   }
 
   /**
    * Méthode d'authentification (à remplacer par votre logique réelle)
-   * @param {string} username 
-   * @param {string} password 
+   * @param {string} username
+   * @param {string} password
    * @returns {Promise<{success: boolean, user?: object, error?: string}>}
    */
   async authenticateUser(username, password) {
@@ -98,7 +97,7 @@ export class LoginController {
 
   /**
    * Définit le token d'authentification
-   * @param {object} user 
+   * @param {object} user
    */
   setAuthToken(user) {
     // Générer et stocker un token d'authentification
@@ -108,7 +107,7 @@ export class LoginController {
 
   /**
    * Génère un token d'authentification (version simplifiée)
-   * @param {object} user 
+   * @param {object} user
    * @returns {string}
    */
   generateToken(user) {
@@ -183,7 +182,7 @@ export class LoginController {
       try {
         // Logique de réinitialisation de mot de passe
         const result = await this.sendPasswordResetEmail(email);
-        
+
         if (result.success) {
           messageDiv.innerHTML = `
             <div class="alert alert-success">
@@ -209,7 +208,7 @@ export class LoginController {
 
   /**
    * Envoie un email de réinitialisation de mot de passe
-   * @param {string} email 
+   * @param {string} email
    * @returns {Promise<{success: boolean, error?: string}>}
    */
   async sendPasswordResetEmail(email) {
@@ -221,9 +220,9 @@ export class LoginController {
           resolve({ success: true });
         }, 1000);
       } else {
-        resolve({ 
-          success: false, 
-          error: 'Adresse email invalide' 
+        resolve({
+          success: false,
+          error: 'Adresse email invalide'
         });
       }
     });
