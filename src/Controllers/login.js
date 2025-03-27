@@ -31,13 +31,13 @@ export class LoginController {
           success: true,
           user: response.user
         };
-      } else {
-        // Gérer l'échec de connexion
-        return {
-          success: false,
-          error: response.error || 'Identifiants incorrects'
-        };
       }
+
+      // Gérer l'échec de connexion
+      return {
+        success: false,
+        error: response.error || 'Identifiants incorrects'
+      };
     } catch (error) {
       return {
         success: false,
@@ -61,7 +61,7 @@ export class LoginController {
           success: true,
           user: {
             id: 1,
-            username: username,
+            username,
             role: 'admin',
             name: 'Administrateur'
           }
