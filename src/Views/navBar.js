@@ -1,11 +1,17 @@
 export function NavBar() {
   const navbar = document.createElement('nav');
-  navbar.className = 'navbar navbar-expand-lg navbar-dark bg-primary';
-
   const path = window.location.pathname;
 
+  if (path.includes('/cria45-admin')) {
+    navbar.className = 'navbar navbar-expand-lg navbar-dark bg-danger'; // Red navbar
+  } else {
+    navbar.className = 'navbar navbar-expand-lg navbar-dark bg-primary'; // Default blue navbar
+  }
+
   let title = "<h2>Pass d'Autonomie Numérique</h2>";
-  if (path.includes('/cria45')) {
+  if (path.includes('/cria45-admin')) {
+    title = "<h2>Pass d'Autonomie Numérique - Zone d'Administration</h2>";
+  } else if (path.includes('/cria45')) {
     title += '<span style="color:rgb(181, 180, 180);">Espace C2B#CRIA45</span>';
   } else if (path.includes('/distributeur')) {
     title += '<span style="color:rgb(181, 180, 180);">Espace Distributeur :</span> Emmaüs Connect';
@@ -31,7 +37,7 @@ export function NavBar() {
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/" data-link>Tableau des Tickets</a>
+            
           </li>
         </ul>
         <img src="https://files.catbox.moe/bt6qh4.png" alt="Reso Logo" class="navbar-logo" style="height: 80px;">

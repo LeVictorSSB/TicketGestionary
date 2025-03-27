@@ -1,4 +1,5 @@
 import { Cria45View } from './Views/cria45';
+import { Cria45ViewAdmin } from './Views/cria45-admin';
 import { LoginView } from './Views/login';
 import { RecepteurView } from './Views/recepteur';
 import { DistributeurView } from './Views/distributeur';
@@ -14,6 +15,7 @@ export class Router {
       '/cria45': Cria45View,
       '/distributeur': DistributeurView,
       '/recepteur': RecepteurView,
+      '/cria45-admin': Cria45ViewAdmin,
       404: Error404
     };
 

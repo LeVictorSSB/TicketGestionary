@@ -4,6 +4,10 @@ export function RecepteurView() {
   const view = document.createElement('div');
   view.className = 'table-view';
 
+  // Titre avant la barre de recherche
+  const title = document.createElement('h4');
+  title.textContent = 'Liste des Tickets';
+
   // Barre de recherche simplifiée
   const searchContainer = document.createElement('div');
   searchContainer.className = 'search-container row';
@@ -17,7 +21,7 @@ export function RecepteurView() {
     <div class="col-md-6 mb-3">
       <div class="input-group">
         <span class="input-group-text"><i class="fas fa-search"></i></span>
-        <input type="text" id="search-name" class="form-control" placeholder="Rechercher par nom">
+        <input type="text" id="search-name" class="form-control" placeholder="Rechercher par Bénéficiaire / Structure">
       </div>
     </div>
   `;
@@ -30,10 +34,10 @@ export function RecepteurView() {
       <thead>
         <tr>
           <th>ID</th>
-          <th>Date de création</th>
-          <th>Distributeur</th>
-          <th>Particulier</th>
-          <th>Date d'utilisation</th>
+          <th>Créé le</th>
+          <th>Distribution prise en charge par</th>
+          <th>Bénéficiaire</th>
+          <th>Utilisé le</th>
           <th>Statut</th>
           <th>Actions</th>
         </tr>
@@ -69,6 +73,7 @@ export function RecepteurView() {
   `;
 
   // Assemblage de la vue
+  view.appendChild(title);
   view.appendChild(searchContainer);
   view.appendChild(tableContainer);
   view.appendChild(modalsContainer);

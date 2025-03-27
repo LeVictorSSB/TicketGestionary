@@ -4,6 +4,10 @@ export function DistributeurView() {
   const view = document.createElement('div');
   view.className = 'table-view';
 
+  // Titre avant le tableau
+  const title = document.createElement('h4');
+  title.textContent = 'Liste des Tickets';
+
   // Barre de recherche simplifiée
   const searchContainer = document.createElement('div');
   searchContainer.className = 'search-container row';
@@ -17,7 +21,7 @@ export function DistributeurView() {
     <div class="col-md-6 mb-3">
       <div class="input-group">
         <span class="input-group-text"><i class="fas fa-search"></i></span>
-        <input type="text" id="search-name" class="form-control" placeholder="Rechercher par nom">
+        <input type="text" id="search-name" class="form-control" placeholder="Rechercher par Bénéficiaire / Structure">
       </div>
     </div>
   `;
@@ -30,10 +34,10 @@ export function DistributeurView() {
       <thead>
         <tr>
           <th>ID</th>
-          <th>Date de création</th>
-          <th>Distributeur</th>
-          <th>Particulier</th>
-          <th>Date d'utilisation</th>
+          <th>Créé le</th>
+          <th>Distribution prise en charge par</th>
+          <th>Bénéficiaire</th>
+          <th>Utilisé le</th>
           <th>Statut</th>
           <th>Actions</th>
         </tr>
@@ -74,6 +78,7 @@ export function DistributeurView() {
   `;
 
   // Assemblage de la vue
+  view.appendChild(title);
   view.appendChild(searchContainer);
   view.appendChild(tableContainer);
   view.appendChild(modalsContainer);
@@ -125,6 +130,16 @@ export function DistributeurView() {
   // Initialisation du contrôleur
   const controller = new TableController(updateView);
 
+  // Fonction pour empêcher la fermeture des modals sur "Enter"
+  function preventModalCloseOnEnter(modalElement) {
+    modalElement.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+  }
+
   // Fonction pour ajouter les écouteurs d'événements aux boutons d'action
   function addActionListeners() {
     // Boutons pour assigner un ticket
@@ -143,6 +158,7 @@ export function DistributeurView() {
     // Initialisation des modals Bootstrap
     Array.from(view.querySelectorAll('.modal')).forEach((modalEl) => {
       new bootstrap.Modal(modalEl);
+      preventModalCloseOnEnter(modalEl); // Appliquer la fonction à chaque modal
     });
 
     // Écouteur pour la soumission du formulaire d'assignation

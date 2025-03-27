@@ -32,6 +32,18 @@ export class TableController {
     return ticket;
   }
 
+  // Supprime un ticket par ID
+  deleteTicket(id) {
+    const index = this.ticketModel.tickets.findIndex((t) => t.id === id);
+    if (index !== -1) {
+      this.ticketModel.tickets.splice(index, 1);
+      this.ticketModel.saveTickets();
+      this.updateView();
+      return true;
+    }
+    return false;
+  }
+
   // Recherche des tickets par ID
   searchById(id) {
     return this.ticketModel.searchById(id);
@@ -42,23 +54,21 @@ export class TableController {
     return this.ticketModel.searchByName(name);
   }
 
-  // Formate la date pour l'affichage
+  // Formate la date pour l'affichage (sans l'heure)
   formatDate(dateString) {
     if (!dateString) return '-';
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR', {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+      year: 'numeric'
     });
   }
 
   // Retourne le statut formaté pour l'affichage
   getStatusLabel(ticket) {
     const statusMap = {
-      created: 'Créé',
+      created: 'Non assigné',
       assigned: 'Assigné',
       used: 'Utilisé'
     };
