@@ -33,7 +33,7 @@ export function RecepteurView() {
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>ID (Numéro)</th>
           <th>Créé le</th>
           <th>Distribution prise en charge par</th>
           <th>Bénéficiaire</th>

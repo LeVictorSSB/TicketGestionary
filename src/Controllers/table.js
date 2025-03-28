@@ -19,8 +19,24 @@ export class TableController {
   }
 
   // Assigne un ticket à un particulier
-  assignTicket(id, particulier) {
-    const ticket = this.ticketModel.assignTicket(id, particulier);
+  assignTicket(
+    id,
+    particulier,
+    dateNaissance,
+    adresse,
+    situationProfessionnelle,
+    genre,
+    besoinIdentifieNumerique
+  ) {
+    const ticket = this.ticketModel.assignTicket(
+      id,
+      particulier,
+      dateNaissance,
+      adresse,
+      situationProfessionnelle,
+      genre,
+      besoinIdentifieNumerique
+    );
     this.updateView();
     return ticket;
   }
@@ -73,5 +89,30 @@ export class TableController {
       used: 'Utilisé'
     };
     return statusMap[ticket.statut] || ticket.statut;
+  }
+
+  // Récupération d'un ticket par ID
+  getTicketById(ticketId) {
+    // Convert ticketId to string to ensure consistent comparison
+    const stringId = String(ticketId);
+
+    // Find the ticket with the matching ID in the ticketModel's tickets
+    const ticket = this.ticketModel.tickets.find((t) => String(t.id) === stringId);
+
+    // If ticket is found, return an object with all the required details
+    if (ticket) {
+      return {
+        id: ticket.id,
+        particulier: ticket.particulier || null,
+        dateNaissance: ticket.dateNaissance || null,
+        adresse: ticket.adresse || null,
+        situationProfessionnelle: ticket.situationProfessionnelle || null,
+        genre: ticket.genre || null,
+        besoinIdentifieNumerique: ticket.besoinIdentifieNumerique || null
+      };
+    }
+
+    // Return null if no ticket is found
+    return null;
   }
 }
